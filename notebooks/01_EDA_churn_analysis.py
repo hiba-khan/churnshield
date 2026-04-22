@@ -13,9 +13,8 @@ from pathlib import Path
 sns.set_style("whitegrid")
 plt.rcParams['figure.figsize'] = (12, 6)
 
-# ============================================================================
-# Load the telco churn dataset
-# ============================================================================
+# Loading the telco churn dataset
+
 data_path = Path("../data/WA_Fn-UseC_-Telco-Customer-Churn (3).csv")
 df = pd.read_csv(data_path)
 
@@ -23,9 +22,8 @@ print(f"Dataset shape: {df.shape}")
 print(f"\nFirst few rows:")
 print(df.head())
 
-# ============================================================================
 # Dataset Overview & Info
-# ============================================================================
+
 print("\n" + "="*70)
 print("DATA INFO:")
 print("="*70)
@@ -39,9 +37,8 @@ print("BASIC STATISTICS:")
 print("="*70)
 print(df.describe())
 
-# ============================================================================
+
 # Key Features vs Churn
-# ============================================================================
 key_features = ['tenure', 'MonthlyCharges', 'TotalCharges'] if 'tenure' in df.columns else []
 
 if key_features:
@@ -58,9 +55,7 @@ if key_features:
     plt.tight_layout()
     plt.show()
 
-# ============================================================================
 # Categorical Features Analysis
-# ============================================================================
 categorical_cols = df.select_dtypes(include=['object']).columns.tolist()
 numerical_cols = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
 
@@ -78,9 +73,7 @@ for col in categorical_cols[:5]:  # Show first 5
     print(f"\n{col}: {df[col].nunique()} unique values")
     print(df[col].value_counts().head(10))
 
-# ============================================================================
 # Churn Distribution
-# ============================================================================
 if 'Churn' in df.columns:
     churn_counts = df['Churn'].value_counts()
     churn_pct = df['Churn'].value_counts(normalize=True) * 100

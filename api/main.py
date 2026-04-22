@@ -76,3 +76,4 @@ def predict_churn(customer: CustomerData):
         "churn_probability": round(float(probability), 3),
         "risk_level": "high" if probability > 0.7 else "medium" if probability > 0.4 else "low"
     }
+
